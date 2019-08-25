@@ -25,6 +25,7 @@ namespace testAPI.Model
         public string Description { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? CreatedDate { get; set; }
+        public int? PostRefId { get; set; }
 
         [InverseProperty("Blog")]
         public virtual ICollection<Posts> Posts { get; set; }

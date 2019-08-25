@@ -105,12 +105,34 @@ namespace testAPI.Controllers
         public async Task<ActionResult<Blogger>> PostBlogger(URLDTO URL)
         {
             Blogger newBlogInfo = Bloggershelper.GetBlogInfo(URL.URL);
-            
-           
+
+            int? orgblogId = newBlogInfo.PostRefId;
 
             // Add this video object to the database
             _context.Blogger.Add(newBlogInfo);
             await _context.SaveChangesAsync();
+            int blogId = newBlogInfo.BlogId;
+
+            REEviewContext tempContext = new REEviewContext();
+            PostsController postsController = new PostsController(tempContext);
+
+            // This will be executed in the background.
+            Task addCaptions = Task.Run(async () =>
+            {
+                List<Posts> transcriptions = new List<Posts>();
+                transcriptions = Bloggershelper.GetPostInfo(orgblogId, blogId );
+
+                for (int i = 0; i < transcriptions.Count; i++)
+                {
+                    // Get the transcription objects form transcriptions and assign VideoId to id, the primary key of the newly inserted video
+                    Posts posts = transcriptions.ElementAt(i);
+                    posts.BlogId = blogId;
+                    posts.Blog = newBlogInfo;
+                    // Add this transcription to the database
+                    await postsController.PostPosts(posts);
+                }
+            });
+
 
             // Return success code and the info on the video object
             // return CreatedAtAction("GetVideo", new { id = newBlogInfo.BlogId }, newBlogInfo);

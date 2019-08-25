@@ -78,7 +78,7 @@ namespace testAPI.Controllers
             _context.Posts.Add(posts);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPosts", new { id = posts.PostsId }, posts);
+            return  posts;
         }
 
         // DELETE: api/Posts/5
