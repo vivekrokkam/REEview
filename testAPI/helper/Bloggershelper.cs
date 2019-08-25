@@ -17,7 +17,7 @@ namespace testAPI.helper
             // Pause the program execution
             Console.WriteLine(GetBlogInfo("https://althouse.blogspot.com/"));
             Console.ReadLine();
-            
+
         }
 
         public static Blogger GetBlogInfo(String blogUrl)
@@ -40,7 +40,8 @@ namespace testAPI.helper
             int blogid = jsonObj["id"];
             String description = jsonObj["url"];
             DateTime published = jsonObj["published"];
-            String BlogUrl = "blogUrl";
+          //  GetPostInfo(blogid);
+
 
 
             // Create a new Blogger Object from the model defined in the API.
@@ -49,48 +50,51 @@ namespace testAPI.helper
 
 
 
-               // BlogId = blogid,
+                PostRefId = blogid,
                 Title = title,
-                WebUrl = BlogUrl,
+                WebUrl = blogUrl,
                 Description = description,
                 CreatedDate = published
             };
+
             return blogger;
             //  return public string Title { get => Title1; set => Title1 = value; }
             // public string Title1 { get => title; set => title = value; }
         }
+
+
+
+        public static List<Posts> GetPostInfo(int? orgblogId, int blogid)
+        {
+            String APIKey = "AIzaSyCoYdGRYle9GBMjeHtYGd2aYx03aWFVQpg";
+            String bloggerAPIURL = "https://www.googleapis.com/blogger/v3/blogs/" + orgblogId + "/posts?key=" + APIKey;
+
+
+            // Use an http client to grab the JSON string from the web.
+            String blogInfoJSON = new WebClient().DownloadString(bloggerAPIURL);
+
+            // Using dynamic object helps us to more effciently extract infomation from a large JSON String.
+            dynamic jsonObj = JsonConvert.DeserializeObject<dynamic>(blogInfoJSON);
+
+            List<Posts> allPosts = new List<Posts>();
+
+            for (int i = 0; i < jsonObj.items.Count; i++)
+            {
+
+                String title = jsonObj["items"][i]["title"];
+                String content = jsonObj["items"][i]["content"];
+
+              
+
+                Posts transcription = new Posts
+                {
+                    Title = title,
+                    BlogId = blogid,
+                    Content = content
+                };
+                allPosts.Add(transcription);
+            }
+            return allPosts;
+        }
     }
 }
- /*       blogger;
-         }
-         public static Posts GetPostInfo(int blogId)
-         {
-             String APIKey = "AIzaSyAv3sIKdSZNafY_ - LVgHah2_tv7q8G5Wkc";
-             String bloggerAPIURL = "https://www.googleapis.com/blogger/v3/blogs/"+blogId+"/posts?key=" + APIKey;
-
-
-             // Use an http client to grab the JSON string from the web.
-             String blogInfoJSON = new WebClient().DownloadString(bloggerAPIURL);
-
-             // Using dynamic object helps us to more effciently extract infomation from a large JSON String.
-             dynamic jsonObj = JsonConvert.DeserializeObject<dynamic>(blogInfoJSON);
-
-             // Extract information from the dynamic object.
-             String title = jsonObj.item[0]["title"];
-             int postId = jsonObj.item[0]["id"];
-             String content = jsonObj.items[0]["content"];
-
-
-             // Create a new Blogger Object from the model defined in the API.
-             Posts posts = new Posts
-             {
-                 PostsId = postId,
-                 BlogId = blogId,
-                 Title = title,
-                 Content = content
-                // CreatedDate = published
-             };
-
-             return posts;
-         }
-         */

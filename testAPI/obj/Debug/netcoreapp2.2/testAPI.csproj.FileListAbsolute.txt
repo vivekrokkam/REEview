@@ -1,0 +1,14 @@
+C:\Users\vivek\source\repos\testAPI\testAPI\bin\Debug\netcoreapp2.2\testAPI.deps.json
+C:\Users\vivek\source\repos\testAPI\testAPI\bin\Debug\netcoreapp2.2\testAPI.runtimeconfig.json
+C:\Users\vivek\source\repos\testAPI\testAPI\bin\Debug\netcoreapp2.2\testAPI.runtimeconfig.dev.json
+C:\Users\vivek\source\repos\testAPI\testAPI\bin\Debug\netcoreapp2.2\testAPI.dll
+C:\Users\vivek\source\repos\testAPI\testAPI\bin\Debug\netcoreapp2.2\testAPI.pdb
+C:\Users\vivek\source\repos\testAPI\testAPI\obj\Debug\netcoreapp2.2\testAPI.csprojAssemblyReference.cache
+C:\Users\vivek\source\repos\testAPI\testAPI\obj\Debug\netcoreapp2.2\testAPI.csproj.CoreCompileInputs.cache
+C:\Users\vivek\source\repos\testAPI\testAPI\obj\Debug\netcoreapp2.2\testAPI.RazorAssemblyInfo.cache
+C:\Users\vivek\source\repos\testAPI\testAPI\obj\Debug\netcoreapp2.2\testAPI.RazorAssemblyInfo.cs
+C:\Users\vivek\source\repos\testAPI\testAPI\obj\Debug\netcoreapp2.2\testAPI.AssemblyInfoInputs.cache
+C:\Users\vivek\source\repos\testAPI\testAPI\obj\Debug\netcoreapp2.2\testAPI.AssemblyInfo.cs
+C:\Users\vivek\source\repos\testAPI\testAPI\obj\Debug\netcoreapp2.2\testAPI.RazorTargetAssemblyInfo.cache
+C:\Users\vivek\source\repos\testAPI\testAPI\obj\Debug\netcoreapp2.2\testAPI.dll
+C:\Users\vivek\source\repos\testAPI\testAPI\obj\Debug\netcoreapp2.2\testAPI.pdb
